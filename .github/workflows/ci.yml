@@ -18,8 +18,10 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          # Match the HostGator production target (PHP 8.2+).
-          php-version: '8.2'
+          # Production runs on PHP 8.2 (HostGator) with --no-dev, but the dev
+          # toolchain (Pest 4, PHPUnit 12, Symfony 8.1) requires PHP 8.3+, so
+          # the lint/analyse/test job runs on 8.3.
+          php-version: '8.3'
           extensions: bcmath, ctype, curl, dom, fileinfo, gd, intl, mbstring, openssl, pdo, pdo_mysql, tokenizer, xml, zip
           coverage: none
           tools: composer:v2
