@@ -6,8 +6,10 @@ use App\Models\Concerns\RecordsActivity;
 use Database\Factories\SlideFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * A homepage hero/carousel slide. The image is the payload and lives in the
@@ -47,5 +49,27 @@ class Slide extends Model implements HasMedia
             'sort_order' => 'integer',
             'is_active' => 'boolean',
         ];
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image')->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('hero')
+            ->nonQueued()
+            ->fit(Fit::Crop, 1920, 1080);
+    }
+
+    /**
+     * Public URL of the hero image, or null when no image has been uploaded.
+     */
+    public function imageUrl(): ?string
+    {
+        $media = $this->getFirstMedia('image');
+
+        return $media?->getUrl('hero');
     }
 }

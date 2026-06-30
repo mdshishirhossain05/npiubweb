@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Slides\Schemas;
 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -12,6 +13,12 @@ class SlideForm
     {
         return $schema
             ->components([
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->collection('image')
+                    ->image()
+                    ->imageEditor()
+                    ->columnSpanFull()
+                    ->helperText('Recommended: a wide landscape image (1920×1080 or larger).'),
                 TextInput::make('title'),
                 TextInput::make('subtitle'),
                 TextInput::make('link_url')

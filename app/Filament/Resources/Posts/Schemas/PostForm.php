@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Posts\Schemas;
 use App\Enums\ContentStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -15,6 +16,11 @@ class PostForm
     {
         return $schema
             ->components([
+                SpatieMediaLibraryFileUpload::make('featured')
+                    ->collection('featured')
+                    ->image()
+                    ->imageEditor()
+                    ->columnSpanFull(),
                 Select::make('category_id')
                     ->relationship('category', 'name'),
                 TextInput::make('title')
