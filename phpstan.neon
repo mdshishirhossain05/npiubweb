@@ -1,0 +1,14 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+        - database
+        - routes
+
+    # Level 5 is a sensible, productive baseline for a fresh Laravel app.
+    # We can ratchet this up toward 8 as the codebase matures.
+    level: 5
+
+    reportUnmatchedIgnoredErrors: false
