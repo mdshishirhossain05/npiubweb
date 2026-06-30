@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\RecordsActivity;
+use Database\Factories\FacultyMemberFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+/**
+ * A teacher / staff member, optionally attached to a {@see Department}.
+ * Their portrait lives in the media library.
+ *
+ * @property int $id
+ * @property int|null $department_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $designation
+ * @property string|null $email
+ * @property string|null $phone
+ * @property string|null $bio
+ * @property int $sort_order
+ * @property int|null $legacy_id
+ */
+class FacultyMember extends Model implements HasMedia
+{
+    /** @use HasFactory<FacultyMemberFactory> */
+    use HasFactory;
+
+    use HasSlug;
+    use InteractsWithMedia;
+    use RecordsActivity;
+
+    protected $fillable = [
+        'department_id',
+        'name',
+        'slug',
+        'designation',
+        'email',
+        'phone',
+        'bio',
+        'sort_order',
+        'legacy_id',
+    ];
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'sort_order' => 'integer',
+        ];
+    }
+
+    /**
+     * @return BelongsTo<Department, $this>
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
+}

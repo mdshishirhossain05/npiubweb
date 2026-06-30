@@ -64,6 +64,27 @@ return [
             ]) : [],
         ],
 
+        // Read-only connection to the legacy production database. Used solely
+        // by the `legacy:import` command; never migrated or written to. Falls
+        // back to the primary DB host/credentials so only the database name has
+        // to be supplied for a same-server legacy copy.
+        'legacy' => [
+            'driver' => env('LEGACY_DB_DRIVER', 'mysql'),
+            'url' => env('LEGACY_DB_URL'),
+            'host' => env('LEGACY_DB_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => env('LEGACY_DB_PORT', env('DB_PORT', '3306')),
+            'database' => env('LEGACY_DB_DATABASE', 'npiub_legacy'),
+            'username' => env('LEGACY_DB_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('LEGACY_DB_PASSWORD', env('DB_PASSWORD', '')),
+            'unix_socket' => env('LEGACY_DB_SOCKET', ''),
+            'charset' => env('LEGACY_DB_CHARSET', 'utf8mb4'),
+            'collation' => env('LEGACY_DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),

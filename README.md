@@ -60,11 +60,51 @@ migration commands (`migrate:fresh`, `migrate:refresh`, `db:wipe`, etc.) against
 any database that can reach real data. Legacy data is imported via a repeatable,
 idempotent importer; the old database is preserved intact as rollback.
 
+## Content schema & legacy import
+
+The new schema models the site's content as discrete, slugged, auditable
+entities:
+
+| Model | Table | Notes |
+|---|---|---|
+| `Page` | `pages` | Static content; soft-deletes, SEO meta, media |
+| `Post` | `posts` | News/articles in an optional `Category`; soft-deletes, media |
+| `Category` | `categories` | Taxonomy for posts |
+| `Notice` | `notices` | Circulars with a date + downloadable attachment (media) |
+| `Event` | `events` | Calendar events with start/end + location |
+| `Department` | `departments` | Owns programs & faculty |
+| `Program` | `programs` | Academic program under a department |
+| `FacultyMember` | `faculty_members` | Teacher/staff with photo (media) |
+| `Slide` | `slides` | Homepage hero/carousel slides (media) |
+
+Shared behaviour lives in small concerns: `HasSlug` (stable, unique slugs
+generated once on create), `RecordsActivity` (Spatie audit log), plus
+`spatie/laravel-medialibrary` for images/attachments. Publication state is the
+`ContentStatus` enum (`draft` / `published`).
+
+### Importing legacy data
+
+Every imported row carries a `legacy_id` mapping it back to the old database,
+so the importer is **idempotent** — re-running updates in place rather than
+duplicating. The old database is treated as strictly read-only.
+
+```bash
+# Point LEGACY_DB_* in .env at a *copy* of the old site database, then:
+php artisan legacy:import
+```
+
+The mapping (legacy table → model, column → attribute) is declared
+declaratively in `config/legacy.php` — no closures, so it survives
+`config:cache` in production. Legacy tables absent from a given dump are skipped
+rather than failing, and junk dates (`0000-00-00`) are coerced to `null`. The
+column names there are best-effort guesses; reconcile them against the real
+legacy schema before the first production import run.
+
 ## Project phases
 
 - [x] **Phase 0** — Backup & legacy schema inspection
-- [x] **Phase 1** — Plan & scaffold (this commit)
-- [ ] **Phase 2** — New schema, models & legacy data importer
+- [x] **Phase 1** — Plan & scaffold
+- [x] **Phase 2** — New schema, models & legacy data importer
 - [ ] **Phase 3** — Admin panel (Filament resources + RBAC)
 - [ ] **Phase 4** — Design system
 - [ ] **Phase 5** — Public site
