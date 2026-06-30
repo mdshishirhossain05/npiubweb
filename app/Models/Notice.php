@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ContentStatus;
 use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\Publishable;
 use App\Models\Concerns\RecordsActivity;
 use Database\Factories\NoticeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,7 @@ class Notice extends Model implements HasMedia
 
     use HasSlug;
     use InteractsWithMedia;
+    use Publishable;
     use RecordsActivity;
 
     protected $fillable = [

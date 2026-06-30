@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ContentStatus;
 use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\Publishable;
 use App\Models\Concerns\RecordsActivity;
 use Database\Factories\PageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +35,7 @@ class Page extends Model implements HasMedia
 
     use HasSlug;
     use InteractsWithMedia;
+    use Publishable;
     use RecordsActivity;
     use SoftDeletes;
 
