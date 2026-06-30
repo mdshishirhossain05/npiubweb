@@ -8,7 +8,7 @@ hosting** (no Node, no Redis, no long-running workers in production).
 
 | Layer | Choice |
 |---|---|
-| Framework | Laravel 12 (PHP 8.2+) |
+| Framework | Laravel 12 (PHP 8.4+) |
 | Admin panel | Filament 4 |
 | Auth & RBAC | Laravel auth + `spatie/laravel-permission` |
 | Media | `spatie/laravel-medialibrary` (PHP/GD image pipeline — no Node on server) |
@@ -27,7 +27,8 @@ hosting** (no Node, no Redis, no long-running workers in production).
   Scheduled work runs via cPanel cron hitting `php artisan schedule:run`.
 - App code lives outside the web root; only Laravel's `public/` is exposed.
 - Composer/Artisan on the server use the explicit cPanel PHP CLI binary
-  (e.g. `/opt/cpanel/ea-php82/bin/php`).
+  (e.g. `/opt/cpanel/ea-php84/bin/php`). Select PHP 8.4 in cPanel — the
+  locked dependencies require it.
 
 ## Local development
 
