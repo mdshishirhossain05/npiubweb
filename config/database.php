@@ -84,6 +84,31 @@ return [
             ]) : [],
         ],
 
+        /*
+        | Read-only connection to the LEGACY production database (a restored
+        | copy). The legacy importer reads from here and writes into the new
+        | schema on the default connection. This is intentionally a separate
+        | connection so the new app never has to point at the old database.
+        | Configure LEGACY_DB_* in .env; leave unset in environments that do
+        | not run the importer.
+        */
+        'legacy' => [
+            'driver' => env('LEGACY_DB_DRIVER', 'mysql'),
+            'url' => env('LEGACY_DB_URL'),
+            'host' => env('LEGACY_DB_HOST', '127.0.0.1'),
+            'port' => env('LEGACY_DB_PORT', '3306'),
+            'database' => env('LEGACY_DB_DATABASE'),
+            'username' => env('LEGACY_DB_USERNAME'),
+            'password' => env('LEGACY_DB_PASSWORD', ''),
+            'unix_socket' => env('LEGACY_DB_SOCKET', ''),
+            'charset' => env('LEGACY_DB_CHARSET', 'utf8mb4'),
+            'collation' => env('LEGACY_DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),

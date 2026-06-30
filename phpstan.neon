@@ -12,3 +12,10 @@ parameters:
     level: 5
 
     reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        # medialibrary's fluent media-conversion chain (->width()->format()
+        # ->nonQueued()) is resolved via __call; Larastan mis-infers it as an
+        # ImageDriver. These calls are valid on Spatie\MediaLibrary Conversion.
+        - identifier: method.notFound
+          message: '#Call to an undefined method Spatie\\Image\\Drivers\\ImageDriver::#'

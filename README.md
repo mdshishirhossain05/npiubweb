@@ -63,8 +63,8 @@ idempotent importer; the old database is preserved intact as rollback.
 ## Project phases
 
 - [x] **Phase 0** — Backup & legacy schema inspection
-- [x] **Phase 1** — Plan & scaffold (this commit)
-- [ ] **Phase 2** — New schema, models & legacy data importer
+- [x] **Phase 1** — Plan & scaffold
+- [x] **Phase 2** — New schema, models & legacy data importer (see `docs/DATA-MIGRATION.md`)
 - [ ] **Phase 3** — Admin panel (Filament resources + RBAC)
 - [ ] **Phase 4** — Design system
 - [ ] **Phase 5** — Public site
