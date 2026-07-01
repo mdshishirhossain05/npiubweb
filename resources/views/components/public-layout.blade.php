@@ -15,12 +15,13 @@
     @endif
 
     <link rel="preconnect" href="https://fonts.bunny.net">
-    {{-- Source Serif for editorial/academic headings, Inter for clean body copy. --}}
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|source-serif-4:400,500,600,700" rel="stylesheet">
+    {{-- Fraunces: a modern, characterful display serif for an editorial identity.
+         Inter: clean, neutral body copy. --}}
+    <link href="https://fonts.bunny.net/css?family=fraunces:400,500,600,700,900|inter:400,500,600,700" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-white font-sans text-slate-700 antialiased">
+<body class="min-h-screen bg-white font-sans text-ink-700 antialiased">
     <x-public.header />
 
     <main>

@@ -22,15 +22,15 @@
                                 @endif
                             </div>
                             <div class="border-t border-slate-100 p-5">
-                                <h2 class="font-display font-semibold text-navy-900">{{ $member->name }}</h2>
+                                <h2 class="font-display font-semibold text-ink-900">{{ $member->name }}</h2>
                                 @if ($member->designation)
-                                    <p class="text-sm font-medium text-brass-600">{{ $member->designation }}</p>
+                                    <p class="text-sm font-medium text-accent-600">{{ $member->designation }}</p>
                                 @endif
                                 @if ($member->department)
                                     <p class="mt-1 text-xs text-slate-500">{{ $member->department->name }}</p>
                                 @endif
                                 @if ($member->email)
-                                    <a href="mailto:{{ $member->email }}" class="mt-3 inline-block text-xs text-slate-500 hover:text-navy-700">{{ $member->email }}</a>
+                                    <a href="mailto:{{ $member->email }}" class="mt-3 inline-block text-xs text-slate-500 hover:text-ink-700">{{ $member->email }}</a>
                                 @endif
                             </div>
                         </div>

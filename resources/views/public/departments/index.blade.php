@@ -9,11 +9,11 @@
                 @foreach ($departments as $i => $department)
                     <x-public.reveal :delay="($i % 3) * 100">
                         <a href="{{ route('departments.show', $department) }}"
-                           class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-6 transition hover:border-brass-500/60">
-                            <span class="grid h-12 w-12 place-items-center rounded-full border border-navy-900/15 font-display text-sm font-bold text-navy-800">
+                           class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-6 transition hover:border-accent-500/60">
+                            <span class="grid h-12 w-12 place-items-center rounded-full border border-ink-900/15 font-display text-sm font-bold text-ink-800">
                                 {{ \Illuminate\Support\Str::substr($department->short_name ?: $department->name, 0, 2) }}
                             </span>
-                            <h2 class="mt-4 font-display text-lg font-semibold text-navy-900 group-hover:text-brass-600">{{ $department->name }}</h2>
+                            <h2 class="mt-4 font-display text-lg font-semibold text-ink-900 group-hover:text-accent-600">{{ $department->name }}</h2>
                             @if ($department->short_name)
                                 <p class="text-sm text-slate-500">{{ $department->short_name }}</p>
                             @endif

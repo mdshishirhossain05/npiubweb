@@ -15,13 +15,13 @@
                             <div class="flex flex-1 flex-col p-6">
                                 <div class="flex items-center gap-2 text-xs text-slate-500">
                                     @if ($post->category)
-                                        <span class="font-semibold uppercase tracking-wide text-brass-600">{{ $post->category->name }}</span>
+                                        <span class="font-semibold uppercase tracking-wide text-accent-600">{{ $post->category->name }}</span>
                                         <span>·</span>
                                     @endif
                                     <span>{{ optional($post->published_at)->format('M j, Y') }}</span>
                                 </div>
-                                <h2 class="mt-3 font-display text-xl font-semibold leading-snug text-navy-900">
-                                    <a href="{{ route('posts.show', $post) }}" class="transition group-hover:text-brass-600">{{ $post->title }}</a>
+                                <h2 class="mt-3 font-display text-xl font-semibold leading-snug text-ink-900">
+                                    <a href="{{ route('posts.show', $post) }}" class="transition group-hover:text-accent-600">{{ $post->title }}</a>
                                 </h2>
                                 @if ($post->excerpt)
                                     <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ $post->excerpt }}</p>

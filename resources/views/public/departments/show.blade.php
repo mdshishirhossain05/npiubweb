@@ -10,7 +10,7 @@
 
         {{-- Programmes --}}
         <section class="mt-12">
-            <h2 class="font-display text-2xl font-bold text-navy-900">Programmes</h2>
+            <h2 class="font-display text-2xl font-bold text-ink-900">Programmes</h2>
             @if ($department->programs->isEmpty())
                 <x-public.empty class="mt-6" message="No programmes listed for this department yet." />
             @else
@@ -19,9 +19,9 @@
                         <div class="rounded-lg border border-slate-200 bg-white p-5">
                             <div class="flex items-center gap-2">
                                 @if ($program->level)
-                                    <span class="rounded border border-navy-900/15 px-1.5 py-0.5 text-xs font-semibold text-navy-700">{{ $program->level }}</span>
+                                    <span class="rounded border border-ink-900/15 px-1.5 py-0.5 text-xs font-semibold text-ink-700">{{ $program->level }}</span>
                                 @endif
-                                <h3 class="font-display font-semibold text-navy-900">{{ $program->name }}</h3>
+                                <h3 class="font-display font-semibold text-ink-900">{{ $program->name }}</h3>
                             </div>
                             @if ($program->duration)
                                 <p class="mt-1 text-sm text-slate-500">Duration: {{ $program->duration }}</p>
@@ -38,16 +38,16 @@
         {{-- Faculty --}}
         @if ($department->facultyMembers->isNotEmpty())
             <section class="mt-12">
-                <h2 class="font-display text-2xl font-bold text-navy-900">Faculty</h2>
+                <h2 class="font-display text-2xl font-bold text-ink-900">Faculty</h2>
                 <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($department->facultyMembers as $member)
                         <div class="rounded-lg border border-slate-200 bg-white p-5">
-                            <h3 class="font-display font-semibold text-navy-900">{{ $member->name }}</h3>
+                            <h3 class="font-display font-semibold text-ink-900">{{ $member->name }}</h3>
                             @if ($member->designation)
-                                <p class="text-sm text-brass-600">{{ $member->designation }}</p>
+                                <p class="text-sm text-accent-600">{{ $member->designation }}</p>
                             @endif
                             @if ($member->email)
-                                <a href="mailto:{{ $member->email }}" class="mt-2 block text-xs text-slate-500 hover:text-navy-700">{{ $member->email }}</a>
+                                <a href="mailto:{{ $member->email }}" class="mt-2 block text-xs text-slate-500 hover:text-ink-700">{{ $member->email }}</a>
                             @endif
                         </div>
                     @endforeach
@@ -56,7 +56,7 @@
         @endif
 
         <div class="mt-10 border-t border-slate-200 pt-6">
-            <a href="{{ route('departments.index') }}" class="text-sm font-semibold text-navy-700 hover:text-brass-600">&larr; All departments</a>
+            <a href="{{ route('departments.index') }}" class="text-sm font-semibold text-ink-700 hover:text-accent-600">&larr; All departments</a>
         </div>
     </div>
 </x-public-layout>

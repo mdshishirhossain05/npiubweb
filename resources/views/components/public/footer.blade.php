@@ -1,8 +1,8 @@
-<footer class="border-t-4 border-brass-500 bg-navy-950 text-navy-50/70">
+<footer class="border-t-4 border-accent-500 bg-ink-950 text-ink-50/70">
     <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4 lg:px-8">
         <div class="md:col-span-2">
             <div class="flex items-center gap-3">
-                <span class="grid h-11 w-11 place-items-center rounded-full border-2 border-brass-500 font-display font-bold text-white">NP</span>
+                <span class="grid h-11 w-11 place-items-center rounded-full border-2 border-accent-500 font-display font-bold text-white">NP</span>
                 <span class="font-display text-lg font-bold text-white">NPI University of Bangladesh</span>
             </div>
             <p class="mt-4 max-w-md text-sm leading-relaxed">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="border-t border-white/10">
-        <div class="mx-auto max-w-7xl px-6 py-5 text-center text-xs text-navy-50/50 lg:px-8">
+        <div class="mx-auto max-w-7xl px-6 py-5 text-center text-xs text-ink-50/50 lg:px-8">
             &copy; {{ now()->year }} NPI University of Bangladesh. All rights reserved.
         </div>
     </div>

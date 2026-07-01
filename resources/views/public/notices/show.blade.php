@@ -8,7 +8,7 @@
         </div>
 
         <div class="mt-10 border-t border-slate-200 pt-6">
-            <a href="{{ route('notices.index') }}" class="text-sm font-semibold text-navy-700 hover:text-brass-600">&larr; Back to all notices</a>
+            <a href="{{ route('notices.index') }}" class="text-sm font-semibold text-ink-700 hover:text-accent-600">&larr; Back to all notices</a>
         </div>
     </article>
 </x-public-layout>

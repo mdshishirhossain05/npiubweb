@@ -37,6 +37,7 @@ class HomeController extends Controller
                 ->take(4)
                 ->get(),
             'departments' => Department::query()
+                ->withCount('programs')
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get(),

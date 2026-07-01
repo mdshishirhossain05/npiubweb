@@ -3,7 +3,7 @@
 
     <article class="mx-auto max-w-3xl px-6 py-16 lg:px-8">
         @if ($page->excerpt)
-            <p class="mb-8 font-display text-xl leading-relaxed text-navy-900">{{ $page->excerpt }}</p>
+            <p class="mb-8 font-display text-xl leading-relaxed text-ink-900">{{ $page->excerpt }}</p>
         @endif
 
         <div class="leading-relaxed text-slate-700">
