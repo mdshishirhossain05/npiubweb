@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ContentStatus;
 use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\Publishable;
 use App\Models\Concerns\RecordsActivity;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * News / articles. Grouped by an optional {@see Category}.
@@ -36,6 +39,7 @@ class Post extends Model implements HasMedia
 
     use HasSlug;
     use InteractsWithMedia;
+    use Publishable;
     use RecordsActivity;
     use SoftDeletes;
 
@@ -77,5 +81,25 @@ class Post extends Model implements HasMedia
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('featured')->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('card')
+            ->nonQueued()
+            ->fit(Fit::Crop, 800, 500);
+    }
+
+    /**
+     * Public URL of the featured image, or null when none has been uploaded.
+     */
+    public function featuredImageUrl(): ?string
+    {
+        return $this->getFirstMedia('featured')?->getUrl('card');
     }
 }

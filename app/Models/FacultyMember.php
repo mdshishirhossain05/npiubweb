@@ -8,8 +8,10 @@ use Database\Factories\FacultyMemberFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * A teacher / staff member, optionally attached to a {@see Department}.
@@ -63,5 +65,25 @@ class FacultyMember extends Model implements HasMedia
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('portrait')
+            ->nonQueued()
+            ->fit(Fit::Crop, 600, 600);
+    }
+
+    /**
+     * Public URL of the portrait, or null when none has been uploaded.
+     */
+    public function photoUrl(): ?string
+    {
+        return $this->getFirstMedia('photo')?->getUrl('portrait');
     }
 }
