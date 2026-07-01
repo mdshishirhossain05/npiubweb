@@ -65,7 +65,7 @@ idempotent importer; the old database is preserved intact as rollback.
 - [x] **Phase 0** — Backup & legacy schema inspection
 - [x] **Phase 1** — Plan & scaffold
 - [x] **Phase 2** — New schema, models & legacy data importer (see `docs/DATA-MIGRATION.md`)
-- [ ] **Phase 3** — Admin panel (Filament resources + RBAC)
+- [x] **Phase 3** — Admin panel: Filament resources + RBAC (menus & site-settings UI pending)
 - [ ] **Phase 4** — Design system
 - [ ] **Phase 5** — Public site
 - [ ] **Phase 6** — SEO, performance, hardening
