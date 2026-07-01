@@ -5,18 +5,17 @@
     'linkLabel' => 'View all',
 ])
 
-<div class="flex flex-wrap items-end justify-between gap-4">
+<div class="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-4">
     <div>
         @if ($eyebrow)
-            <p class="text-sm font-semibold uppercase tracking-widest text-amber-600">{{ $eyebrow }}</p>
+            <p class="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-brass-600">{{ $eyebrow }}</p>
         @endif
-        <h2 class="mt-1 text-3xl font-bold tracking-tight text-slate-900">{{ $title }}</h2>
+        <h2 class="font-display text-3xl font-bold tracking-tight text-navy-900">{{ $title }}</h2>
     </div>
     @if ($link)
         <a href="{{ $link }}"
-           class="group inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-900">
-            {{ $linkLabel }}
-            <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+           class="text-sm font-semibold text-navy-700 underline-offset-4 hover:text-brass-600 hover:underline">
+            {{ $linkLabel }} &rarr;
         </a>
     @endif
 </div>

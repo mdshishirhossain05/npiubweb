@@ -3,13 +3,16 @@
     'subtitle' => null,
 ])
 
-<section class="relative overflow-hidden bg-blue-950">
-    <div class="bg-grid absolute inset-0 opacity-60"></div>
-    <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-amber-500/20 blur-3xl"></div>
-    <div class="relative mx-auto max-w-7xl px-4 pb-14 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8">
-        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">{{ $title }}</h1>
+<section class="border-b-4 border-brass-500 bg-navy-900">
+    <div class="mx-auto max-w-7xl px-6 py-14 sm:py-16 lg:px-8">
+        <nav class="mb-3 text-sm text-navy-50/60">
+            <a href="{{ route('home') }}" class="hover:text-white">Home</a>
+            <span class="mx-1.5">/</span>
+            <span class="text-navy-50/90">{{ $title }}</span>
+        </nav>
+        <h1 class="font-display text-4xl font-bold text-white sm:text-5xl">{{ $title }}</h1>
         @if ($subtitle)
-            <p class="mt-4 max-w-2xl text-lg text-blue-100">{{ $subtitle }}</p>
+            <p class="mt-4 max-w-2xl text-lg text-navy-50/80">{{ $subtitle }}</p>
         @endif
     </div>
 </section>
