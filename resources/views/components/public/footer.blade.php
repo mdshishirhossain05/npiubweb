@@ -6,8 +6,9 @@
                 <span class="font-display text-lg font-bold text-white">NPI University of Bangladesh</span>
             </div>
             <p class="mt-4 max-w-md text-sm leading-relaxed">
-                A university committed to quality education, research and the personal growth
-                of every student, in the heart of Manikganj, Bangladesh.
+                A private university established in 2015, committed to quality education,
+                research and the personal growth of every student — at Basta, Singair,
+                Manikganj.
             </p>
         </div>
 
@@ -25,7 +26,8 @@
         <div>
             <h3 class="font-display text-sm font-semibold uppercase tracking-wider text-white">Contact</h3>
             <ul class="mt-4 space-y-2.5 text-sm">
-                <li>Manikganj, Bangladesh</li>
+                <li>Basta, Singair, Manikganj, Dhaka</li>
+                <li><a href="tel:+8801703444111" class="hover:text-white">+880 1703-444111</a></li>
                 <li><a href="mailto:info@npiub.edu.bd" class="hover:text-white">info@npiub.edu.bd</a></li>
                 <li><a href="https://npiub.edu.bd" class="hover:text-white">npiub.edu.bd</a></li>
             </ul>

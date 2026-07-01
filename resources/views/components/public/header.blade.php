@@ -13,10 +13,10 @@
     {{-- Slim utility bar --}}
     <div class="hidden bg-navy-900 text-navy-50/80 md:block">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs lg:px-8">
-            <span>NPI University of Bangladesh · Manikganj</span>
+            <span>Basta, Singair, Manikganj, Dhaka</span>
             <div class="flex items-center gap-5">
+                <a href="tel:+8801703444111" class="hover:text-white">+880 1703-444111</a>
                 <a href="mailto:info@npiub.edu.bd" class="hover:text-white">info@npiub.edu.bd</a>
-                <a href="{{ route('notices.index') }}" class="hover:text-white">Notices</a>
                 <a href="/admin" class="hover:text-white">Portal</a>
             </div>
         </div>

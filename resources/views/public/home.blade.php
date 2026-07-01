@@ -63,10 +63,10 @@
     {{-- ===================== STATS ===================== --}}
     <section class="border-b border-slate-200 bg-white">
         <div class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 lg:grid-cols-4 lg:px-8">
-            <x-public.stat :value="5000" label="Students" />
-            <x-public.stat :value="max($departments->count(), 4) * 6" label="Programmes" />
-            <x-public.stat :value="150" label="Faculty" />
-            <x-public.stat :value="25" label="Years" />
+            <x-public.stat text="2015" label="Established" />
+            <x-public.stat :value="4" label="Faculties" />
+            <x-public.stat :value="max($departments->count(), 7)" label="Departments" />
+            <x-public.stat :value="12" suffix="+" label="Programmes" />
         </div>
     </section>
 
@@ -79,14 +79,14 @@
                     An education grounded in scholarship and purpose
                 </h2>
                 <p class="mt-6 leading-relaxed text-slate-600">
-                    For over two decades, NPI University of Bangladesh has been committed to
-                    academic rigour, research and the personal growth of every student. Our
-                    programmes are designed to prepare graduates for meaningful careers and
-                    responsible citizenship.
+                    Established in 2015 at Basta, Singair, Manikganj, NPI University of Bangladesh
+                    is a UGC-approved private university committed to academic rigour, research and
+                    the personal growth of every student.
                 </p>
                 <p class="mt-4 leading-relaxed text-slate-600">
-                    Across our departments, students learn from experienced faculty in modern
-                    facilities, supported by a community that values integrity and excellence.
+                    Through our Faculties of Engineering, Business, Arts &amp; Social Science, and
+                    Health Science &amp; Technology, students learn from dedicated faculty in a
+                    supportive community that values integrity and excellence.
                 </p>
                 <a href="/about" class="mt-8 inline-flex items-center text-sm font-semibold text-navy-700 underline-offset-4 hover:text-brass-600 hover:underline">
                     More about the university &rarr;
