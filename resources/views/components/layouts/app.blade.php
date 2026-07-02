@@ -14,7 +14,7 @@
 
     <x-seo :title="$title" :description="$description" :image="$ogImage" :type="$ogType" />
 
-    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset(file_exists(public_path('images/logo.png')) ? 'images/logo.png' : 'images/logo.svg') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
