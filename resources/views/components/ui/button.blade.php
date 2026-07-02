@@ -14,12 +14,13 @@
     ];
 
     $variants = [
-        'primary' => 'bg-primary-600 text-white hover:bg-primary-700 focus-visible:ring-primary-500',
-        'secondary' => 'bg-secondary-600 text-white hover:bg-secondary-700 focus-visible:ring-secondary-500',
-        'accent' => 'bg-accent-600 text-white hover:bg-accent-700 focus-visible:ring-accent-500',
+        'primary' => 'bg-primary-600 text-white shadow-sm shadow-primary-600/30 hover:bg-primary-700 hover:shadow-md focus-visible:ring-primary-500',
+        'secondary' => 'bg-secondary-600 text-white shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-500',
+        'accent' => 'bg-accent-600 text-white shadow-sm hover:bg-accent-700 focus-visible:ring-accent-500',
+        'gold' => 'bg-gold-500 text-ink-800 shadow-sm shadow-gold-600/30 hover:bg-gold-400 focus-visible:ring-gold-400',
         'outline' => 'border border-primary-600 text-primary-700 hover:bg-primary-50 focus-visible:ring-primary-500',
         'ghost' => 'text-primary-700 hover:bg-primary-50 focus-visible:ring-primary-500',
-        'white' => 'bg-white text-primary-700 hover:bg-primary-50 focus-visible:ring-white',
+        'white' => 'bg-white text-primary-700 shadow-sm hover:bg-primary-50 focus-visible:ring-white',
     ];
 
     $classes = implode(' ', [$base, $sizes[$size] ?? $sizes['md'], $variants[$variant] ?? $variants['primary']]);

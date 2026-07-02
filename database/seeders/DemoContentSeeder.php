@@ -8,7 +8,6 @@ use App\Models\News;
 use App\Models\Notice;
 use App\Models\Person;
 use App\Models\Program;
-use App\Models\Slider;
 use App\Support\Legacy\DepartmentResolver;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -112,12 +111,7 @@ class DemoContentSeeder extends Seeder
             );
         }
 
-        Slider::firstOrCreate(['title' => 'Welcome to NPIUB'], [
-            'subtitle' => 'Building skilled graduates for Bangladesh',
-            'cta_label' => 'Apply Now',
-            'cta_url' => '/admissions',
-            'is_active' => true,
-            'sort_order' => 1,
-        ]);
+        // (No slider seeded — the editorial hero renders when no slider images
+        // exist; sliders with uploaded images take over automatically.)
     }
 }
