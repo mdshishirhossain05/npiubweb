@@ -17,6 +17,7 @@ class HomeController extends Controller
     {
         return view('pages.home', [
             'sliders' => Slider::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'departments' => Department::query()->where('is_active', true)->orderBy('priority')->orderBy('name')->get(),
             'stats' => [
                 ['value' => Department::count() ?: '6', 'label' => 'Departments'],
                 ['value' => Program::count() ?: '12', 'label' => 'Programs'],

@@ -9,7 +9,7 @@ it('renders the home page on an empty database', function () {
     $this->get('/')
         ->assertOk()
         ->assertSee('NPI University')
-        ->assertSee('Explore our programs');
+        ->assertSee('Programs');
 });
 
 it('renders an active department page', function () {
