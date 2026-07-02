@@ -1,4 +1,18 @@
-<x-layouts.app :title="$article->seoTitle().' — '.config('app.name')" :description="$article->seoDescription()">
+<x-layouts.app :title="$article->seoTitle().' — '.config('app.name')" :description="$article->seoDescription()"
+    :ogImage="$article->getFirstMediaUrl('cover') ?: null" ogType="article">
+    @push('schema')
+        <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'NewsArticle',
+            'headline' => $article->title,
+            'datePublished' => optional($article->published_at)->toAtomString(),
+            'author' => ['@type' => 'Organization', 'name' => $article->author_name ?: config('app.name')],
+            'publisher' => ['@type' => 'Organization', 'name' => config('app.name')],
+            'mainEntityOfPage' => url()->current(),
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+    @endpush
     <article class="mx-auto max-w-3xl px-4 py-12 lg:py-16">
         <x-ui.breadcrumbs :items="[['label' => 'News', 'url' => url('/news')], ['label' => $article->title]]" />
 

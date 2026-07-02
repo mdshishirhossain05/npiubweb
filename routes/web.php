@@ -14,9 +14,18 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// 301 redirects preserving legacy URLs that changed.
+Route::permanentRedirect('/apply-admission', '/admissions');
+Route::permanentRedirect('/undergraduate-program', '/admissions');
+Route::permanentRedirect('/graduate-program', '/admissions');
+Route::permanentRedirect('/location', '/contact');
 
 // Academics
 Route::get('/departments/{department:slug}', [DepartmentController::class, 'show'])->name('departments.show');

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -25,6 +26,25 @@ class Department extends Model implements HasMedia
         'priority' => 'integer',
         'established_year' => 'integer',
     ];
+
+    /**
+     * Active departments for navigation/footer, cached to avoid a query on
+     * every page load. Busted automatically when a department changes.
+     */
+    public static function activeNav()
+    {
+        return Cache::rememberForever('departments.active_nav', fn () => static::query()
+            ->where('is_active', true)
+            ->orderBy('priority')->orderBy('name')
+            ->get(['id', 'name', 'slug', 'short_name']));
+    }
+
+    protected static function booted(): void
+    {
+        $flush = fn () => Cache::forget('departments.active_nav');
+        static::saved($flush);
+        static::deleted($flush);
+    }
 
     public function people(): HasMany
     {

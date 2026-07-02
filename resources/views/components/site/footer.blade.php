@@ -27,7 +27,7 @@
             <div>
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500">Departments</h3>
                 <ul class="mt-4 space-y-3 text-sm">
-                    @foreach (\App\Models\Department::where('is_active', true)->orderBy('priority')->take(6)->get() as $dept)
+                    @foreach (\App\Models\Department::activeNav()->take(6) as $dept)
                         <li><a href="{{ url('/departments/'.$dept->slug) }}" class="text-slate-400 transition hover:text-white">{{ $dept->name }}</a></li>
                     @endforeach
                 </ul>

@@ -1,6 +1,5 @@
 @php
-    $departments = \App\Models\Department::query()
-        ->where('is_active', true)->orderBy('priority')->orderBy('name')->get(['name', 'slug']);
+    $departments = \App\Models\Department::activeNav();
 
     $navLinks = [
         ['label' => 'About', 'url' => url('/about')],
