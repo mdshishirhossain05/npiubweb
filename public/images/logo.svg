@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="NPIUB placeholder logo">
+  <!-- PLACEHOLDER crest — replace by uploading the official logo.png to public/images/ -->
+  <path d="M60 6 C40 6 22 12 14 16 v46 c0 26 20 44 46 52 26 -8 46 -26 46 -52 V16 C98 12 80 6 60 6 Z"
+        fill="#ffffff" stroke="#159a5c" stroke-width="5"/>
+  <rect x="18" y="22" width="84" height="22" rx="3" fill="#e23127"/>
+  <text x="60" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="15"
+        font-weight="800" fill="#ffffff" letter-spacing="1">NPIUB</text>
+  <path d="M8 66 h30 l-6 7 6 7 H8 Z M112 66 H82 l6 7 -6 7 h30 Z" fill="#2a2e8e"/>
+  <text x="60" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-size="8"
+        font-weight="600" fill="#2a2e8e">NPI University</text>
+  <text x="60" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="8"
+        font-weight="600" fill="#2a2e8e">of Bangladesh</text>
+  <text x="60" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-size="6"
+        fill="#94a3b8">(placeholder)</text>
+</svg>

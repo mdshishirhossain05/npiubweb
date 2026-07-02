@@ -6,6 +6,65 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Typography — English (Inter) + Bangla (Hind Siliguri), self-hosted via Vite. */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-bengali: 'Hind Siliguri', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* Brand — Primary (NPIUB green) */
+    --color-primary-50: #e9f9f0;
+    --color-primary-100: #cff3e0;
+    --color-primary-200: #a1e7c2;
+    --color-primary-300: #6ed79f;
+    --color-primary-400: #38bd78;
+    --color-primary-500: #159a5c;
+    --color-primary-600: #0f8550;
+    --color-primary-700: #0c6b41;
+    --color-primary-800: #0b5536;
+    --color-primary-900: #094629;
+
+    /* Brand — Secondary (NPIUB royal blue) */
+    --color-secondary-50: #ecedf7;
+    --color-secondary-100: #d6d7ef;
+    --color-secondary-200: #b0b2df;
+    --color-secondary-300: #8688cd;
+    --color-secondary-400: #5a5dba;
+    --color-secondary-500: #3a3ea3;
+    --color-secondary-600: #2a2e8e;
+    --color-secondary-700: #24277a;
+    --color-secondary-800: #1d2063;
+    --color-secondary-900: #171951;
+
+    /* Brand — Accent (NPIUB red) — used sparingly for important/urgent */
+    --color-accent-50: #fdecea;
+    --color-accent-100: #fbd5d1;
+    --color-accent-200: #f6aaa3;
+    --color-accent-300: #f07d72;
+    --color-accent-400: #ea5346;
+    --color-accent-500: #e23127;
+    --color-accent-600: #c2261d;
+    --color-accent-700: #9e1e17;
+    --color-accent-800: #7c1813;
+    --color-accent-900: #5f120f;
+}
+
+/* Bangla content: apply the `.font-bengali` class (or lang="bn") for correct shaping. */
+:lang(bn),
+.font-bengali {
+    font-family: var(--font-bengali);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
 }
