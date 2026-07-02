@@ -9,7 +9,7 @@ Values below match this account — **adjust if yours differs**:
 |---|---|
 | cPanel user | `owdfyvte` |
 | Home dir | `/home2/owdfyvte` |
-| PHP 8.2 CLI | `/opt/cpanel/ea-php82/bin/php` |
+| PHP 8.2 CLI | `/opt/cpanel/ea-php82/root/usr/bin/php` |
 | App root (staging) | `/home2/owdfyvte/npiub_staging` |
 | Staging subdomain | `staging.npiub.edu.bd` |
 | New database | `owdfyvte_npiub_new` |
@@ -72,15 +72,15 @@ Open cPanel **Terminal** (or SSH) and run:
 cd /home2/owdfyvte/npiub_staging
 
 # Composer (once): grab composer.phar into the app root
-/opt/cpanel/ea-php82/bin/php -r "copy('https://getcomposer.org/installer','ci.php');"
-/opt/cpanel/ea-php82/bin/php ci.php && rm ci.php   # creates composer.phar
+/opt/cpanel/ea-php82/root/usr/bin/php -r "copy('https://getcomposer.org/installer','ci.php');"
+/opt/cpanel/ea-php82/root/usr/bin/php ci.php && rm ci.php   # creates composer.phar
 
 # Install PHP dependencies
-/opt/cpanel/ea-php82/bin/php composer.phar install --no-dev --optimize-autoloader
+/opt/cpanel/ea-php82/root/usr/bin/php composer.phar install --no-dev --optimize-autoloader
 
 # Create the environment file
 cp .env.example .env
-/opt/cpanel/ea-php82/bin/php artisan key:generate
+/opt/cpanel/ea-php82/root/usr/bin/php artisan key:generate
 
 # Make storage + cache writable
 chmod -R 775 storage bootstrap/cache
@@ -138,15 +138,15 @@ Then seed roles + the default admin (first deploy only):
 
 ```bash
 cd /home2/owdfyvte/npiub_staging
-/opt/cpanel/ea-php82/bin/php artisan db:seed --force   # roles, permissions, site settings, admin
+/opt/cpanel/ea-php82/root/usr/bin/php artisan db:seed --force   # roles, permissions, site settings, admin
 ```
 
 ## 8. Import real data (into the NEW db, from the COPY)
 
 ```bash
 cd /home2/owdfyvte/npiub_staging
-/opt/cpanel/ea-php82/bin/php artisan migrate:legacy --report   # dry-run counts
-/opt/cpanel/ea-php82/bin/php artisan migrate:legacy            # import
+/opt/cpanel/ea-php82/root/usr/bin/php artisan migrate:legacy --report   # dry-run counts
+/opt/cpanel/ea-php82/root/usr/bin/php artisan migrate:legacy            # import
 ```
 
 Review the reconciliation table (legacy vs new counts). See `docs/DATA-MIGRATION.md`.
@@ -166,7 +166,7 @@ Review the reconciliation table (legacy vs new counts). See `docs/DATA-MIGRATION
 cPanel → **Cron Jobs** → add (every minute):
 
 ```
-* * * * * /opt/cpanel/ea-php82/bin/php /home2/owdfyvte/npiub_staging/artisan schedule:run >> /dev/null 2>&1
+* * * * * /opt/cpanel/ea-php82/root/usr/bin/php /home2/owdfyvte/npiub_staging/artisan schedule:run >> /dev/null 2>&1
 ```
 
 ## 11. Admin login
@@ -210,7 +210,7 @@ Visit `https://staging.npiub.edu.bd/admin` and log in with the seeded admin
   and `bootstrap/cache` are writable (775) and `.env` `APP_KEY` is set.
 - **Assets 404 / unstyled** → the deployed branch must be `deploy` (it contains
   `public/build`). Re-run the GitHub Action, re-pull.
-- **`php` is the wrong version** → always call `/opt/cpanel/ea-php82/bin/php`.
+- **`php` is the wrong version** → always call `/opt/cpanel/ea-php82/root/usr/bin/php`.
 - **`composer` not found** → use `./composer.phar` (step 5).
 - **Symlink disabled** (`storage:link` fails) → copy instead:
   `cp -r storage/app/public public/storage`.

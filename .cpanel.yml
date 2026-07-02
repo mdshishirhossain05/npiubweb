@@ -12,7 +12,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/owdfyvte/npiub_staging
-    - export PHP=/opt/cpanel/ea-php82/bin/php
+    - export PHP=/opt/cpanel/ea-php82/root/usr/bin/php
     - export COMPOSER="$PHP $DEPLOYPATH/composer.phar"
     - /bin/echo "Deploying to $DEPLOYPATH"
     # Install PHP deps (production, optimized). composer.phar must exist in the
