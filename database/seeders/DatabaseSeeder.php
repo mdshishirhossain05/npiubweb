@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(SiteSeeder::class);
 
         // Default super administrator. Override via env for real deployments;
         // the password MUST be changed after first login.

@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Department;
+use App\Models\Page;
+use Database\Seeders\SiteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -24,6 +26,21 @@ it('renders an active department page', function () {
         ->assertOk()
         ->assertSee('Computer Science &amp; Engineering', false)
         ->assertSee('Programs Offered');
+});
+
+it('renders every public index page on an empty database', function (string $path) {
+    $this->get($path)->assertOk();
+})->with([
+    '/faculty', '/notices', '/news', '/events', '/research',
+    '/alumni', '/galleries', '/downloads', '/contact', '/admissions', '/search',
+]);
+
+it('renders a published static page and 404s an unpublished one', function () {
+    $this->seed(SiteSeeder::class);
+    $this->get('/about')->assertOk()->assertSee('About');
+
+    Page::where('slug', 'about')->update(['is_published' => false]);
+    $this->get('/about')->assertNotFound();
 });
 
 it('404s for an inactive department', function () {

@@ -45,6 +45,9 @@
         </nav>
 
         <div class="flex items-center gap-3">
+            <a href="{{ url('/search') }}" aria-label="Search" class="hidden p-2 text-slate-500 transition hover:text-ink-900 sm:block">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+            </a>
             <x-ui.button href="{{ url('/admissions') }}" size="sm" class="hidden sm:inline-flex">Apply</x-ui.button>
             <button @click="mobileOpen = !mobileOpen" class="-mr-2 p-2 text-ink-900 lg:hidden" aria-label="Toggle menu" :aria-expanded="mobileOpen">
                 <svg x-show="!mobileOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 7h16M4 12h16M4 17h16"/></svg>
