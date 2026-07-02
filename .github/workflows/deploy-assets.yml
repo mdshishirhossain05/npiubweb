@@ -1,0 +1,46 @@
+name: Build deploy branch
+
+# The production server (HostGator) has no Node. This workflow builds the
+# front-end assets in CI and publishes a `deploy` branch that includes the
+# compiled public/build, ready for cPanel Git Version Control to pull.
+
+on:
+  push:
+    branches: [main, 'claude/npi-university-rebuild-zu0dzz']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-branch
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install & build assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish deploy branch (source + compiled assets)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B deploy
+          # Force-include the built assets that are gitignored on source branches.
+          git add -f public/build
+          git add -A
+          git commit -m "build: compiled assets for ${GITHUB_SHA::7}" || echo "nothing to commit"
+          git push -f origin deploy

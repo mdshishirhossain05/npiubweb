@@ -1,0 +1,30 @@
+---
+# cPanel Git Version Control deployment.
+# Runs when you click "Deploy HEAD Commit" after pulling from GitHub.
+# The repository is cloned IN PLACE at the app root (outside public_html);
+# the site's document root points at <app root>/public.
+#
+# IMPORTANT: adjust DEPLOYPATH and the PHP binary if your account differs.
+#   - Account home here is /home2/owdfyvte
+#   - PHP 8.2 CLI binary: /opt/cpanel/ea-php82/bin/php
+#   - Deploy the branch that CONTAINS compiled assets (public/build), i.e. the
+#     CI-built `deploy` branch — the server has no Node to build them.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/owdfyvte/npiub_staging
+    - export PHP=/opt/cpanel/ea-php82/bin/php
+    - export COMPOSER="$PHP $DEPLOYPATH/composer.phar"
+    - /bin/echo "Deploying to $DEPLOYPATH"
+    # Install PHP deps (production, optimized). composer.phar must exist in the
+    # app root once (see DEPLOYMENT.md); falls back to a system composer.
+    - cd $DEPLOYPATH && ( $COMPOSER install --no-dev --optimize-autoloader --no-interaction || $PHP $(command -v composer) install --no-dev --optimize-autoloader --no-interaction )
+    # Run migrations against the NEW database (never the legacy one).
+    - cd $DEPLOYPATH && $PHP artisan migrate --force
+    # Public storage symlink (falls back silently if symlinks are disabled).
+    - cd $DEPLOYPATH && $PHP artisan storage:link || /bin/true
+    # Rebuild caches for speed on shared hosting.
+    - cd $DEPLOYPATH && $PHP artisan config:cache
+    - cd $DEPLOYPATH && $PHP artisan route:cache
+    - cd $DEPLOYPATH && $PHP artisan view:cache
+    - cd $DEPLOYPATH && $PHP artisan event:cache
+    - /bin/echo "Deploy complete."
