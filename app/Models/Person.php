@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -43,6 +44,25 @@ class Person extends Model implements HasMedia
     public function scopeFaculty($query)
     {
         return $query->where('type', self::TYPE_FACULTY);
+    }
+
+    /**
+     * Active leadership/office holders for the navigation menu, cached.
+     */
+    public static function leadershipNav()
+    {
+        return Cache::rememberForever('people.leadership_nav', fn () => static::query()
+            ->where('type', self::TYPE_LEADERSHIP)
+            ->where('is_active', true)
+            ->orderBy('priority')->orderBy('name')
+            ->get(['name', 'slug', 'position']));
+    }
+
+    protected static function booted(): void
+    {
+        $flush = fn () => Cache::forget('people.leadership_nav');
+        static::saved($flush);
+        static::deleted($flush);
     }
 
     public function getRouteKeyName(): string

@@ -65,4 +65,10 @@ return [
     ],
 
     'roles' => ['super_admin', 'editor', 'department_admin'],
+
+    /*
+    | Base directory the legacy image/file paths are relative to (the old
+    | Laravel app's storage/app/public). Used by `php artisan legacy:media`.
+    */
+    'media_path' => env('LEGACY_MEDIA_PATH'),
 ];
