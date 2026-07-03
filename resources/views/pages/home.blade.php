@@ -5,7 +5,7 @@
     <section class="mx-auto max-w-7xl px-4 lg:px-6">
         <div class="grid items-center gap-10 py-14 lg:grid-cols-12 lg:gap-12 lg:py-24">
             <div class="lg:col-span-7">
-                <span class="eyebrow">NPI University of Bangladesh · Est. 2016</span>
+                <span class="eyebrow">NPI University of Bangladesh · Est. 2015</span>
                 <h1 class="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-ink-900 sm:text-6xl lg:text-7xl">
                     Knowledge<br>for a purposeful<br><span class="text-primary-600">future.</span>
                 </h1>
